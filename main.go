@@ -7,6 +7,7 @@ func main() {
 }
 
 type Position struct {
+	x int
 	y int
 }
 
@@ -20,6 +21,7 @@ func NewRover() *Rover {
 	return &Rover{
 		direction: "N",
 		position: Position{
+			x: 0,
 			y: 0,
 		},
 		gridSize: 10,
@@ -34,11 +36,11 @@ func (r *Rover) Execute(command string) string {
 		case 'L':
 			r.rotateLeft()
 		case 'M':
-			r.position.y = (r.position.y + 1) % r.gridSize
+			r.moveForward()
 		}
 	}
 
-	return fmt.Sprintf("0:%d:%s", r.position.y, r.direction)
+	return fmt.Sprintf("%d:%d:%s", r.position.x, r.position.y, r.direction)
 }
 
 func (r *Rover) rotateRight() {
@@ -64,5 +66,14 @@ func (r *Rover) rotateLeft() {
 		r.direction = "E"
 	case "E":
 		r.direction = "N"
+	}
+}
+
+func (r *Rover) moveForward() {
+	switch r.direction {
+	case "N":
+		r.position.y = (r.position.y + 1) % r.gridSize
+	case "E":
+		r.position.x = (r.position.x + 1) % r.gridSize
 	}
 }
