@@ -13,11 +13,16 @@ type Position struct {
 type Rover struct {
 	direction string
 	position  Position
+	gridSize  int
 }
 
 func NewRover() *Rover {
 	return &Rover{
 		direction: "N",
+		position: Position{
+			y: 0,
+		},
+		gridSize: 10,
 	}
 }
 
@@ -29,7 +34,7 @@ func (r *Rover) Execute(command string) string {
 		case 'L':
 			r.rotateLeft()
 		case 'M':
-			r.position.y++
+			r.position.y = (r.position.y + 1) % r.gridSize
 		}
 	}
 
