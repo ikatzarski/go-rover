@@ -21,6 +21,8 @@ func (r *Rover) Execute(command string) string {
 		switch c {
 		case 'R':
 			r.rotateRight()
+		case 'L':
+			r.rotateLeft()
 		}
 	}
 
@@ -36,6 +38,19 @@ func (r *Rover) rotateRight() {
 	case "S":
 		r.direction = "W"
 	case "W":
+		r.direction = "N"
+	}
+}
+
+func (r *Rover) rotateLeft() {
+	switch r.direction {
+	case "N":
+		r.direction = "W"
+	case "W":
+		r.direction = "S"
+	case "S":
+		r.direction = "E"
+	case "E":
 		r.direction = "N"
 	}
 }
