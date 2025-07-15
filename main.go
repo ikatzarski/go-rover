@@ -12,5 +12,9 @@ func NewRover() *Rover {
 }
 
 func (r *Rover) Execute(command string) string {
+	if command == "R" {
+		return "0:0:E"
+	}
+
 	return "0:0:N"
 }
