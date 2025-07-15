@@ -25,6 +25,7 @@ func TestExecute(t *testing.T) {
 		{name: "Rotate left four times", command: "LLLL", expected: "0:0:N"},
 		{name: "Rotate right and left", command: "RL", expected: "0:0:N"},
 		{name: "Rotate right three times and left once", command: "RRRL", expected: "0:0:S"},
+		{name: "Move forward once", command: "M", expected: "0:1:N"},
 	}
 
 	for _, tc := range testCases {

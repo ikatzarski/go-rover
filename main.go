@@ -6,8 +6,13 @@ func main() {
 	println("Mars Rover")
 }
 
+type Position struct {
+	y int
+}
+
 type Rover struct {
 	direction string
+	position  Position
 }
 
 func NewRover() *Rover {
@@ -23,10 +28,12 @@ func (r *Rover) Execute(command string) string {
 			r.rotateRight()
 		case 'L':
 			r.rotateLeft()
+		case 'M':
+			r.position.y++
 		}
 	}
 
-	return fmt.Sprintf("0:0:%s", r.direction)
+	return fmt.Sprintf("0:%d:%s", r.position.y, r.direction)
 }
 
 func (r *Rover) rotateRight() {
