@@ -77,5 +77,7 @@ func (r *Rover) moveForward() {
 		r.position.x = (r.position.x + 1) % r.gridSize
 	case "S":
 		r.position.y = (r.position.y - 1 + r.gridSize) % r.gridSize
+	case "W":
+		r.position.x = (r.position.x - 1 + r.gridSize) % r.gridSize
 	}
 }
