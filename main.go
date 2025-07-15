@@ -1,20 +1,41 @@
 package main
 
+import "fmt"
+
 func main() {
 	println("Mars Rover")
 }
 
 type Rover struct {
+	direction string
 }
 
 func NewRover() *Rover {
-	return &Rover{}
+	return &Rover{
+		direction: "N",
+	}
 }
 
 func (r *Rover) Execute(command string) string {
-	if command == "R" {
-		return "0:0:E"
+	for _, c := range command {
+		switch c {
+		case 'R':
+			r.rotateRight()
+		}
 	}
 
-	return "0:0:N"
+	return fmt.Sprintf("0:0:%s", r.direction)
+}
+
+func (r *Rover) rotateRight() {
+	switch r.direction {
+	case "N":
+		r.direction = "E"
+	case "E":
+		r.direction = "S"
+	case "S":
+		r.direction = "W"
+	case "W":
+		r.direction = "N"
+	}
 }
