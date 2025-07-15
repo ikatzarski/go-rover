@@ -33,6 +33,10 @@ func TestExecute(t *testing.T) {
 		{name: "Move forward East three times", command: "RMMM", expected: "3:0:E"},
 		{name: "Move forward East and wrap around", command: "RMMMMMMMMMM", expected: "0:0:E"},
 		{name: "Move forward East, wrap around and move again", command: "RMMMMMMMMMMM", expected: "1:0:E"},
+		{name: "Move forward South", command: "RRM", expected: "0:9:S"},
+		{name: "Move forward South three times", command: "RRMMM", expected: "0:7:S"},
+		{name: "Move forward South and wrap around", command: "RRMMMMMMMMMM", expected: "0:0:S"},
+		{name: "Move forward South, wrap around and move again", command: "RRMMMMMMMMMMM", expected: "0:9:S"},
 	}
 
 	for _, tc := range testCases {
