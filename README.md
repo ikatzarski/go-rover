@@ -46,3 +46,7 @@ type MarsRover interface {
 
 - The rover receives a string of commands like "RMMLM" and returns its final position - "2:1:N".
 - The rover wraps around if it reaches the end of the grid.
+
+## References
+
+- [Codurance Mars Rover](https://www.codurance.com/katas/simple-mars-rover)
