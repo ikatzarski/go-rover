@@ -6,20 +6,27 @@ func main() {
 	println("Mars Rover")
 }
 
+var directions = map[int]string{
+	0: "N",
+	1: "E",
+	2: "S",
+	3: "W",
+}
+
 type Position struct {
 	x int
 	y int
 }
 
 type Rover struct {
-	direction string
+	direction int
 	position  Position
 	gridSize  int
 }
 
-func NewRover() *Rover {
-	return &Rover{
-		direction: "N",
+func NewRover() Rover {
+	return Rover{
+		direction: 0,
 		position: Position{
 			x: 0,
 			y: 0,
@@ -40,37 +47,19 @@ func (r *Rover) Execute(command string) string {
 		}
 	}
 
-	return fmt.Sprintf("%d:%d:%s", r.position.x, r.position.y, r.direction)
+	return fmt.Sprintf("%d:%d:%s", r.position.x, r.position.y, directions[r.direction])
 }
 
 func (r *Rover) rotateRight() {
-	switch r.direction {
-	case "N":
-		r.direction = "E"
-	case "E":
-		r.direction = "S"
-	case "S":
-		r.direction = "W"
-	case "W":
-		r.direction = "N"
-	}
+	r.direction = (r.direction + 1) % len(directions)
 }
 
 func (r *Rover) rotateLeft() {
-	switch r.direction {
-	case "N":
-		r.direction = "W"
-	case "W":
-		r.direction = "S"
-	case "S":
-		r.direction = "E"
-	case "E":
-		r.direction = "N"
-	}
+	r.direction = (r.direction - 1 + len(directions)) % len(directions)
 }
 
 func (r *Rover) moveForward() {
-	switch r.direction {
+	switch directions[r.direction] {
 	case "N":
 		r.position.y = (r.position.y + 1) % r.gridSize
 	case "E":
